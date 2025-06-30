@@ -24,6 +24,8 @@ services:
       - NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=${NEXT_PUBLIC_RECAPTCHA_SECRET_KEY}
     volumes:
        - web-seguridad:/app/uploads
+volumes:
+  web-seguridad:
 networks:
   caddy:
     name: caddy
