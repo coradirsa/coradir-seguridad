@@ -1,0 +1,33 @@
+@import "tailwindcss";
+@font-face {
+    font-family: 'DM Sans';
+    src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf'); 
+    font-style: normal;
+    font-display: swap;
+}
+@theme{
+    --font-dm: 'DM Sans', sans-serif;
+    --color-red: #600214;
+    --color-red-light: #c09aa1;
+    --color-red-text: #701b2b;
+    --color-white: #FFFFFF;
+    --color-black: #000000;
+}
+.container{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.burger_slide{ 
+    display: block;
+    width: 100%;
+    height: .2em;
+    background-color: var(--color-white); 
+    border-radius: 20px;
+    transition: all 300ms ease-in-out;
+}
+
+.text-shadow{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+    
