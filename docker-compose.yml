@@ -14,8 +14,7 @@ services:
     restart: always
     ports:
       - "6115:6115"
-    labels: 
-        proyecto: coradir-seguridad
+    labels:  
           - caddy=seguridad.coradir.com.ar
           - caddy.reverse_proxy="{{upstreams 6115}}"
     environment:
@@ -23,7 +22,15 @@ services:
       - NEXT_PUBLIC_N8N_WEBHOOK_URL=${NEXT_PUBLIC_N8N_WEBHOOK_URL}
       - NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
       - NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=${NEXT_PUBLIC_RECAPTCHA_SECRET_KEY}
-
+volumes:
+  db_data:
+    driver: local
+    labels: 
+      - coradir-seguridad
+  wordpress_files:
+    driver: local
+    labels:
+      - coradir-seguridad
 networks:
   caddy:
     name: caddy
