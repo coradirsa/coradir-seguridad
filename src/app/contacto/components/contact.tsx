@@ -1,5 +1,5 @@
 "use client"
-
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { FormSchema, InputForm } from "./formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -116,15 +116,16 @@ export default function Contact() {
         setLoading(false);
     }; 
     return (
-        <section className="flex flex-col pt-30 md:pt-40 py-10 justify-start items-center w-full mx-auto min-h-[100vh] "
-            style={{
-                backgroundImage: "url('/img/02.png')",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-            }}
+        <section className="flex flex-col pt-30 md:pt-40 py-10 justify-start items-center w-full mx-auto min-h-[100vh] relative" 
         >
-            <section className="w-[90%] flex flex-col items-center ">
+            <Image 
+                src="/img/02.png"
+                alt="banner contacto"
+                className="absolute top-0 left-0 w-full h-full object-cover"
+                width={1920}
+                height={1080}
+            />
+            <section className="w-[90%] flex flex-col items-center bg-transparent relative">
                 <h1 className="text-white text-5xl md:text-6xl font-bold text-shadow  ">COMUNICATE<br className="md:hidden"/> CON NOSOTROS</h1>
                 { loading ? (
                     <Loader/>
