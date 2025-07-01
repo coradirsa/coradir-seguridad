@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function MenuDesktop({isRedBg}: {isRedBg: boolean}) {
     const [isOpen, setIsOpen] = useState(false);
     return (
-        <div className="flex items-start   justify-start gap-5  text-white  text-xl " onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
+        <div className="md:flex items-start   justify-start gap-5  text-white  text-xl hidden  " onMouseEnter={() => setIsOpen(true)} onMouseLeave={() => setIsOpen(false)}>
             <div className="flex items-start gap-5">
                 <div className="flex flex-col justify-start items-start gap-3  md:w-40  ">
                     <span className={`cursor-pointer  ${isRedBg ? 'border-b-1 border-white' : ''}`}>Sobre nosotros</span>

@@ -40,7 +40,7 @@ export default function Header() {
         } else {
             setIsRedBg(false);
         }   
-    }, [openMenu, isMobile, pathname]);
+    }, [openMenu, isMobile, pathname]); 
     return (
         <>
             <header
@@ -56,7 +56,7 @@ export default function Header() {
                     
                     {isMobile ? (
                         <button 
-                        className="flex flex-col gap-1 items-center justify-between w-10 min-h-9 p-2 py-2.5 rounded-full border-1 transition-all duration-300"
+                        className="flex flex-col gap-1 items-center justify-between w-10 min-h-9 p-2 py-2.5 rounded-full border-1 transition-all duration-300 md:hidden"
                         aria-label="Menu"
                         onClick={() => setOpenMenu(!openMenu)}
                         style={{borderColor: openMenu ? 'white' : 'transparent' }}
