@@ -54,7 +54,7 @@ export default function Header() {
                 <div className="container flex justify-between items-center md:items-start xl:py-2 ">
                     <Link href="/" className="text-white text-xl xl:text-4xl uppercase"><b >Coradir</b> <i className="text-white/80">Seguridad</i></Link>
                     
-                    {isMobile ? (
+                    {!!isMobile ? (
                         <button 
                         className="flex flex-col gap-1 items-center justify-between w-10 min-h-9 p-2 py-2.5 rounded-full border-1 transition-all duration-300 md:hidden"
                         aria-label="Menu"
