@@ -122,10 +122,10 @@ export default function Contact() {
                 src="/img/02.png"
                 alt="banner contacto"
                 className="absolute top-0 left-0 w-full h-full object-cover"
-                width={1920}
-                height={1080}
+                priority
+                fill
             />
-            <section className="w-[90%] flex flex-col items-center bg-transparent relative">
+            <section className="w-full px-10  flex flex-col items-center bg-transparent relative">
                 <h1 className="text-white text-5xl md:text-6xl font-bold text-shadow  ">COMUNICATE<br className="md:hidden"/> CON NOSOTROS</h1>
                 { loading ? (
                     <Loader/>
