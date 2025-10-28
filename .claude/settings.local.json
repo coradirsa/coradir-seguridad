@@ -15,7 +15,8 @@
       "Bash(npx lighthouse:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\nFase 5 - Optimización completa: SEO, Performance, Tracking y Accesibilidad\n\n## Mejoras implementadas:\n\n### Fase 1-2: Optimización de Imágenes y Videos\n- Imágenes optimizadas a WebP con fallback\n- Videos comprimidos con H.264 (480p/720p/1080p)\n- Lazy loading implementado\n\n### Fase 3: SEO y Metadata\n- JSON-LD schemas (LocalBusiness, Product, ContactPage)\n- Open Graph y Twitter Cards\n- Sitemap dinámico y robots.txt\n\n### Fase 3.5: Event Tracking\n- Analytics integrado (GA4 + GTM)\n- Tracking de formularios, descargas PDF, videos\n- Scroll depth tracking\n\n### Fase 4: Core Web Vitals\n- Cache headers optimizados (1 año)\n- Compresión gzip/brotli\n- Preconnect a GTM/GA\n- Security headers (CSP, X-Frame-Options, etc)\n\n### Fase 5: Accesibilidad\n- Skip to content link\n- Focus-visible styles\n- ARIA labels mejorados\n- Semantic HTML\n\n## Resultados Lighthouse:\n- Performance: 82/100\n- Accessibility: 93/100\n- Best Practices: 75/100\n- SEO: 100/100\n\n## Limpieza:\n- Console.logs removidos de producción\n- Scripts webm innecesarios eliminados\n- Documentación consolidada en MEJORAS-SEO-PERFORMANCE.md\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

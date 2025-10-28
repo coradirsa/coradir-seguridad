@@ -148,7 +148,7 @@ NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=tu_recaptcha_secret_key_aqui
 NEXT_PUBLIC_RECAPTCHA_MIN_SCORE=0.5
 
 # n8n Webhook
-NEXT_PUBLIC_N8N_WEBHOOK_URL=https://tu-webhook.com/endpoint
+NEXT_PUBLIC_N8N_WEBHOOK_URL=https://automatic.coradir.com.ar/webhook/webhook/seguridad-leads
 
 # Google Analytics 4
 NEXT_PUBLIC_GA_ID=G-K747C6S23H
