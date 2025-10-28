@@ -1,25 +1,14 @@
 "use client"
 import Link from "next/link";
 import { motion } from "framer-motion"
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useInView } from "framer-motion"
+import LazyVideo from "@/components/shared/LazyVideo";
 export default function SafeSection() {
     const titleRef = useRef(null);
     const linkRef = useRef(null);
     const isTitleInView = useInView(titleRef, { amount: 0.5, once: false });
     const isLinkInView = useInView(linkRef, { amount: 0.5, once: false });
-    const videoRef = useRef<HTMLVideoElement>(null);
-    const videoDivRef = useRef(null);
-    const isVideoInView = useInView(videoDivRef, { amount: 0.5, once: false });
-
-    useEffect(() => {
-        if (!videoRef.current) return;
-        if (isVideoInView) {
-            videoRef.current.play();
-        } else {
-            videoRef.current.pause();
-        }
-    }, [isVideoInView]);
     return (
         <section className="flex flex-col items-start justify-start max-w-[1800px]  mx-auto gap-5 pb-10">
             <div className="w-full  bg-red p-8 xl:px-30" ref={titleRef}>
@@ -64,17 +53,17 @@ export default function SafeSection() {
                 </p>
                 
             </section>
-            <section ref={videoDivRef} className="w-full gap-5 xl:w-[80%] mx-auto flex flex-col items-center justify-center ">
-                <video
-                    ref={videoRef}
-                    loop
-                    muted
-                    src="/videos/seguridad.mp4"
-                    className="w-full"
-                    // No uses autoPlay para que no intente reproducirse antes de estar visible
-                >
-                    Tu navegador no soporta el video.
-                </video>
+            <section className="w-full gap-5 xl:w-[80%] mx-auto flex flex-col items-center justify-center ">
+                <LazyVideo
+                    mobileSrc="/videos/seguridad-mobile.mp4"
+                    tabletSrc="/videos/seguridad-tablet.mp4"
+                    desktopSrc="/videos/seguridad-desktop.mp4"
+                    fallbackSrc="/videos/seguridad.mp4"
+                    poster="/videos/seguridad-poster.jpg"
+                    aria-label="Video demostrativo del sistema de seguridad Coradir - Botones antipánico con monitoreo 24/7"
+                    className="w-full aspect-video"
+                    autoPlay={true}
+                />
                 <motion.div
                     ref={linkRef}
                     initial={{ scale: 1 }}

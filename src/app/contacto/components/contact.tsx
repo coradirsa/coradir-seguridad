@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form";
 import { FormSchema, InputForm } from "./formSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef, useState } from "react";
-import CustomInput from "./customInput"; 
+import CustomInput from "./customInput";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Loader from "./loader";
+import { trackFormSubmit, trackFormSuccess, trackFormError } from "@/utils/analytics";
 
 export default function Contact() {
     const [loading, setLoading] = useState(false);
@@ -49,10 +50,13 @@ export default function Contact() {
             ref: useRef<HTMLInputElement>(null),
         },
     ];
-    const onSubmit = async (data:FormSchema) => { 
+    const onSubmit = async (data:FormSchema) => {
+        // Track: Inicio de envío de formulario
+        trackFormSubmit('contact_form');
+
         setLoading(true);
         try{
-            if (!executeRecaptcha) throw new Error('Debes completar el captcha.'); 
+            if (!executeRecaptcha) throw new Error('Debes completar el captcha.');
             const token = await executeRecaptcha('form_submit');
             const verifyCaptcha = await fetch('/api/verify-captcha', {
                 method: 'POST',
@@ -61,12 +65,16 @@ export default function Contact() {
                 },
                 body: JSON.stringify({ token }),
             });
-            const verifyCaptchaJson = await verifyCaptcha.json(); 
-            if (!verifyCaptchaJson.ok) throw new Error(verifyCaptchaJson.error); 
+            const verifyCaptchaJson = await verifyCaptcha.json();
+            if (!verifyCaptchaJson.ok) throw new Error(verifyCaptchaJson.error);
 
-        }catch(error : unknown){ 
+        }catch(error : unknown){
             const err = error as Error;
             console.error(error);
+
+            // Track: Error en captcha
+            trackFormError('contact_form', err.message);
+
             setSubmitMessage({
                 type: 'error',
                 text: err.message,
@@ -95,13 +103,21 @@ export default function Contact() {
             if (!response.ok) {
                 throw new Error(`Error HTTP: ${response.status}`);
             }
+
+            // Track: Formulario enviado con éxito (CONVERSIÓN)
+            trackFormSuccess('contact_form');
+
             setSubmitMessage({
                 type: 'success',
                 text: '¡Gracias por tu interés! Hemos recibido tu solicitud y te contactaremos pronto.',
             });
-        } catch (error : unknown) { 
+        } catch (error : unknown) {
             const err = error as Error;
             console.error(err.message);
+
+            // Track: Error al enviar el formulario
+            trackFormError('contact_form', err.message);
+
             setLoading(false);
             setSubmitMessage({
                 type: 'error',
@@ -116,15 +132,33 @@ export default function Contact() {
         setLoading(false);
     }; 
     return (
-        <section className="flex flex-col pt-30 md:pt-40 py-10 justify-start items-center w-full mx-auto min-h-[100vh] relative" 
+        <section className="flex flex-col pt-30 md:pt-40 py-10 justify-start items-center w-full mx-auto min-h-[100vh] relative"
         >
-            <Image 
-                src="/img/02.png"
-                alt="banner contacto"
-                className="absolute top-0 left-0 w-full h-full object-cover"
-                priority
-                fill
-            />
+            <picture>
+                <source
+                    media="(max-width: 768px)"
+                    srcSet="/img/02/02-mobile.webp"
+                    type="image/webp"
+                />
+                <source
+                    media="(max-width: 1024px)"
+                    srcSet="/img/02/02-tablet.webp"
+                    type="image/webp"
+                />
+                <source
+                    srcSet="/img/02/02-desktop.webp"
+                    type="image/webp"
+                />
+                <Image
+                    src="/img/02/02-fallback.jpg"
+                    alt="Formulario de contacto - Coradir Seguridad. Solicita información sobre nuestros sistemas de seguridad antipánico"
+                    fill
+                    priority
+                    quality={85}
+                    sizes="100vw"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                />
+            </picture>
             <section className="w-full px-10  flex flex-col items-center bg-transparent relative">
                 <h1 className="text-white text-5xl md:text-6xl font-bold text-shadow  ">COMUNICATE<br className="md:hidden"/> CON NOSOTROS</h1>
                 { loading ? (

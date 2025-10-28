@@ -38,13 +38,31 @@ export default function DiscoveredSection() {
                 >
                     <Link id="boton-seguridad-home-1" href="/contacto">¡SABER MÁS!</Link>
                 </motion.div>
-                <Image 
-                    src="/img/boton seguridad.png" 
-                    alt="Imagen del boton de seguridad" 
-                    width={1000} 
-                    height={1000} 
-                    className="w-60 h-70 object-cover object-[10%_50%]   md:w-[30em] md:h-[30em] xl:w-[40em] xl:h-[40em]"
-                />
+                <picture>
+                    <source
+                        media="(max-width: 768px)"
+                        srcSet="/img/boton-seguridad/boton-seguridad-mobile.webp"
+                        type="image/webp"
+                    />
+                    <source
+                        media="(max-width: 1024px)"
+                        srcSet="/img/boton-seguridad/boton-seguridad-tablet.webp"
+                        type="image/webp"
+                    />
+                    <source
+                        srcSet="/img/boton-seguridad/boton-seguridad-desktop.webp"
+                        type="image/webp"
+                    />
+                    <Image
+                        src="/img/boton-seguridad/boton-seguridad-fallback.jpg"
+                        alt="Botón antipánico Coradir - Dispositivo de respuesta inmediata con geolocalización precisa y diseño discreto"
+                        width={1000}
+                        height={1000}
+                        sizes="(max-width: 768px) 240px, (max-width: 1024px) 480px, 640px"
+                        quality={85}
+                        className="w-60 h-70 object-cover object-[10%_50%] md:w-[30em] md:h-[30em] xl:w-[40em] xl:h-[40em]"
+                    />
+                </picture>
             </div>
            
         </section>

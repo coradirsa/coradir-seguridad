@@ -30,4 +30,35 @@
 .text-shadow{
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
-    
+
+/* Accesibilidad: Skip to content */
+.skip-to-content {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1em;
+    background-color: var(--color-red);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.skip-to-content:focus {
+    left: 50%;
+    top: 1rem;
+    transform: translateX(-50%);
+    outline: 3px solid white;
+    outline-offset: 4px;
+}
+
+/* Accesibilidad: Focus visible mejorado */
+*:focus-visible {
+    outline: 3px solid var(--color-red);
+    outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--color-red);
+    outline-offset: 4px;
+}

@@ -9,7 +9,16 @@ export default function HeroSection() {
     return (
         <section className="flex flex-col justify-start items-center bg-white">
             < div className="w-full h-[50vh] md:h-[80vh] xl:h-[100vh] flex flex-col items-end  justify-end overflow-hidden relative" >
-                <Image ref={bannerRef} priority src="/img/hero.jpg" layout="fill" alt="Hero" quality={100}  className="absolute top-0 left-0 w-full h-full object-cover " />
+                <Image
+                    ref={bannerRef}
+                    priority
+                    src="/img/hero.jpg"
+                    fill
+                    alt="Coradir Seguridad - Protección integral para comunidades más seguras con botones antipánico y sistemas de respuesta inmediata"
+                    quality={90}
+                    sizes="100vw"
+                    className="absolute top-0 left-0 w-full h-full object-cover"
+                />
                 <motion.h1  
                     className="bg-red/30 rounded-bl-3xl text-4xl xl:text-6xl font-bold pl-5   md:pl-20 xl:py-10 py-2 xl:leading-17 w-[90%]  text-left text-white z-1"
                     initial={{ opacity: 0, x: "50%" }}

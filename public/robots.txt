@@ -1,0 +1,45 @@
+# Robots.txt para Coradir Seguridad
+# https://coradirseguridad.com
+
+# Permitir acceso a todos los crawlers
+User-agent: *
+Allow: /
+
+# Bloquear archivos y directorios privados
+Disallow: /api/
+Disallow: /_next/static/
+
+# Permitir específicamente recursos importantes
+Allow: /img/
+Allow: /videos/
+Allow: /icons/
+Allow: /fonts/
+
+# Bloquear archivos específicos
+Disallow: /*.json$
+Disallow: /manifest.json
+
+# Crawl-delay para bots agresivos (opcional)
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /img/
+Allow: /videos/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Sitemap
+Sitemap: https://coradirseguridad.com/sitemap.xml

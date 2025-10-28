@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run optimize:images:*)",
+      "Bash(npm run build:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(npm run create:video-placeholder:*)",
+      "Bash(npm run optimize:video:*)",
+      "Bash(npm run optimize:video:webm:*)",
+      "Bash(node:*)",
+      "Bash(npm run lint)",
+      "Bash(npm start)",
+      "Bash(npx lighthouse:*)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

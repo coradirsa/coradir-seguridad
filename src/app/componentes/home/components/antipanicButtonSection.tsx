@@ -51,13 +51,31 @@ export default function AntipanicButtonSection({lineBottomRef}: {lineBottomRef: 
             <div  
                 className="relative w-fit xl:w-[50%] mx-auto"
             > 
-                <Image  
-                    src="/img/mendozav.png" 
-                    alt="Imagen del boton de seguridad" 
-                    width={1000} 
-                    height={1000} 
-                    className="relative w-50 h-80 object-contain xl:object-contain xl:object-top z-20 xl:w-full xl:h-[30em]"
-                />
+                <picture>
+                    <source
+                        media="(max-width: 768px)"
+                        srcSet="/img/mendozav/mendozav-mobile.webp"
+                        type="image/webp"
+                    />
+                    <source
+                        media="(max-width: 1024px)"
+                        srcSet="/img/mendozav/mendozav-tablet.webp"
+                        type="image/webp"
+                    />
+                    <source
+                        srcSet="/img/mendozav/mendozav-desktop.webp"
+                        type="image/webp"
+                    />
+                    <Image
+                        src="/img/mendozav/mendozav-fallback.jpg"
+                        alt="Sistema de botones antipánico Coradir - Más de 43.000 personas protegidas. Respuesta inmediata ante emergencias"
+                        width={1000}
+                        height={1000}
+                        sizes="(max-width: 768px) 200px, (max-width: 1024px) 400px, 600px"
+                        quality={85}
+                        className="relative w-50 h-80 object-contain xl:object-contain xl:object-top z-20 xl:w-full xl:h-[30em]"
+                    />
+                </picture>
                 <span  className="z-10 block  rounded-bl-3xl bg-red-light w-50 h-76 xl:h-full xl:w-[60%] xl:-bottom-8 absolute bottom-0 xl:left-10 -left-5"></span>
                 {/* Mobile */}
                 <motion.div 

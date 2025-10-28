@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { useMediaQuery } from "@/hooks/useMediaQury"
+import { trackPDFDownload } from "@/utils/analytics"
 
 export default function BenefitsSection({lineBottomRef}: {lineBottomRef: React.RefObject<HTMLDivElement | null>}) { 
     const isMobile = useMediaQuery("(min-width: 1280px)");
@@ -51,15 +52,21 @@ export default function BenefitsSection({lineBottomRef}: {lineBottomRef: React.R
                 ref={linkRef}
                 initial={{ scale: 1 }}
                 animate={isInView ? { scale: 1.1   } : { scale: 1  }}
-                transition={{ type: "spring", stiffness: 200, damping: 20 }} 
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 className="w-full xl:hidden"
-            > 
-                <a id="boton-seguridad-mobile-descarga-folleto"  download href="/Boton-antipanico-folleto.pdf" className="flex items-center justify-center gap-2 text-red font-bold w-full py-1  border-1 border-red-light rounded-3xl my-10">
-                    FOLLETO 
-                    <Image 
-                        src="/icons/i_01.png" 
-                        alt="Icono de folleto" 
-                        width={1000} 
+            >
+                <a
+                    id="boton-seguridad-mobile-descarga-folleto"
+                    download
+                    href="/Boton-antipanico-folleto.pdf"
+                    onClick={() => trackPDFDownload('Boton-antipanico-folleto.pdf', 'benefits_section_mobile')}
+                    className="flex items-center justify-center gap-2 text-red font-bold w-full py-1  border-1 border-red-light rounded-3xl my-10"
+                >
+                    FOLLETO
+                    <Image
+                        src="/icons/i_01.png"
+                        alt="Icono de folleto"
+                        width={1000}
                         height={1000}
                         className="w-12 h-12"
                     />
