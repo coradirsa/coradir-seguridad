@@ -142,17 +142,25 @@ pnpm install
 Crear archivo `.env.local` en la raíz del proyecto:
 
 ```env
-# reCAPTCHA v3 Configuration
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_site_key_aqui
-NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=tu_secret_key_aqui
+# Google reCAPTCHA v3
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=tu_recaptcha_site_key_aqui
+NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=tu_recaptcha_secret_key_aqui
 NEXT_PUBLIC_RECAPTCHA_MIN_SCORE=0.5
 
-# Webhook Configuration (n8n o similar)
+# n8n Webhook
 NEXT_PUBLIC_N8N_WEBHOOK_URL=https://tu-webhook.com/endpoint
 
-# Analytics (opcional - ya configurado en layout.tsx)
-# NEXT_PUBLIC_GA_ID=G-K747C6S23H
-# NEXT_PUBLIC_GTM_ID=GTM-WPC2GBF9
+# Google Analytics 4
+NEXT_PUBLIC_GA_ID=G-K747C6S23H
+
+# Google Tag Manager
+NEXT_PUBLIC_GTM_ID=GTM-WPC2GBF9
+
+# Site URL (para SEO y metadata)
+NEXT_PUBLIC_SITE_URL=https://coradirseguridad.com
+
+# Node Environment
+NODE_ENV=production
 ```
 
 ### Obtener Credenciales reCAPTCHA
