@@ -15,6 +15,9 @@ export default function RootLayout({
   return (
     <html lang="es">
     <head>
+      {/* PWA Manifest */}
+      <link rel="manifest" href="/manifest.json" />
+
       {/* Preconnect a dominios externos */}
       <link rel="preconnect" href="https://www.googletagmanager.com" />
       <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -58,7 +61,7 @@ export default function RootLayout({
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}';
+                gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
               `
             }}
           />

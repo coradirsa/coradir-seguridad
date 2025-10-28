@@ -1,0 +1,16 @@
+{
+  "name": "Coradir Seguridad",
+  "short_name": "Coradir",
+  "description": "Sistemas de seguridad electrónica, alarmas, cámaras de vigilancia y botones antipánico en Mendoza",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ]
+}
