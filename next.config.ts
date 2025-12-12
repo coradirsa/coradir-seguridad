@@ -75,6 +75,9 @@ const nextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
   poweredByHeader: false,
+
+  // 🔒 SECURITY: Output standalone para multi-stage build
+  output: 'standalone',
 };
 
 export default nextConfig;

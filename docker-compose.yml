@@ -13,16 +13,24 @@ services:
         - NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}
         - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
         - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+
     networks:
       - caddy
-    restart: always
+
+    restart: unless-stopped
+
     ports:
       - "6115:6115"
+
     labels:
-          - caddy=seguridad.coradir.com.ar
-          - caddy.reverse_proxy="{{upstreams 6115}}"
+      - caddy=seguridad.coradir.com.ar
+      - caddy.reverse_proxy="{{upstreams 6115}}"
+
     environment:
       - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - NODE_OPTIONS=--max-old-space-size=1536
+      - PORT=6115
       - NEXT_PUBLIC_N8N_WEBHOOK_URL=${NEXT_PUBLIC_N8N_WEBHOOK_URL}
       - NEXT_PUBLIC_RECAPTCHA_SITE_KEY=${NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
       - NEXT_PUBLIC_RECAPTCHA_SECRET_KEY=${NEXT_PUBLIC_RECAPTCHA_SECRET_KEY}
@@ -30,10 +38,43 @@ services:
       - NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}
       - NEXT_PUBLIC_GTM_ID=${NEXT_PUBLIC_GTM_ID}
       - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL}
+
+    # 🔒 SECURITY: Sistema de archivos read-only
+    # Tu app NO escribe archivos en runtime, solo logs a STDOUT
+    read_only: true
+
+    # 🔒 SECURITY: Remover TODAS las capacidades de kernel
+    cap_drop:
+      - ALL
+
+    # 🔒 SECURITY: Prevenir escalada de privilegios
+    security_opt:
+      - no-new-privileges:true
+
+    # 🔒 SECURITY: Límites de recursos (previene DoS por consumo excesivo)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.5'           # Máximo 1.5 cores
+          memory: 2G            # Máximo 2GB RAM
+        reservations:
+          cpus: '0.5'           # Mínimo garantizado
+          memory: 512M          # RAM base garantizada
+
+    # 📁 Volúmenes: Uploads persistente + tmpfs para archivos temporales
     volumes:
-       - web-seguridad:/app/uploads
+      - web-seguridad:/app/uploads   # Único volumen writable
+
+    tmpfs:
+      # Next.js necesita escribir cache durante runtime
+      - /tmp:size=100M,mode=1777
+      - /app/.next/cache:size=300M,uid=1001,gid=1001
+      # Node.js puede necesitar /var/tmp para algunas operaciones
+      - /var/tmp:size=50M,mode=1777
+
 volumes:
   web-seguridad:
+
 networks:
   caddy:
     name: caddy
